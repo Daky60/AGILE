@@ -31,7 +31,10 @@ def print_menu():
     try:
         PLAYER.set_action(int(choice))
         if COMPUTER.ammo == 0:
-            computer_action = random.randint(2, 3)
+            if PLAYER.ammo == 0:
+                computer_action = 2
+            else:
+                computer_action = random.randint(2, 3)
         else:
             if PLAYER.ammo == 0:
                 computer_action = random.randint(1, 2)
