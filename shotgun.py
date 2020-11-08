@@ -30,10 +30,14 @@ def print_menu():
     )
     try:
         PLAYER.set_action(int(choice))
-        if COMPUTER.ammo > 0:
-            COMPUTER.set_action(random.randint(1, 3))
+        if COMPUTER.ammo == 0:
+            computer_action = random.randint(2, 3)
         else:
-            COMPUTER.set_action(random.randint(2, 3))
+            if PLAYER.ammo == 0:
+                computer_action = random_randint(1, 2)
+            else:
+                computer_action = random_randint(1, 3)
+        COMPUTER.set_action(computer_action)
         if PLAYER.action == 1:
             if PLAYER.ammo >= 1:
                 print('Shooting..')
