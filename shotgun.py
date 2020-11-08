@@ -34,9 +34,9 @@ def print_menu():
             computer_action = random.randint(2, 3)
         else:
             if PLAYER.ammo == 0:
-                computer_action = random_randint(1, 2)
+                computer_action = random.randint(1, 2)
             else:
-                computer_action = random_randint(1, 3)
+                computer_action = random.randint(1, 3)
         COMPUTER.set_action(computer_action)
         if PLAYER.action == 1:
             if PLAYER.ammo >= 1:
