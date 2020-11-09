@@ -16,6 +16,24 @@ COMPUTER = player()
 ## prints ammo for player and computer
 def print_ammo():
     print(f'Your ammo: {PLAYER.ammo}\nComputer\'s ammo: {COMPUTER.ammo}')
+#function for shooting, outcome based on computers action
+def shoot():
+    if COMPUTER.action == 1:
+        PLAYER.set_ammo(-1)
+        COMPUTER.set_ammo(-1)
+    elif COMPUTER.action == 2:
+        print("Winner winner chicken dinner")
+    elif COMPUTER.action == 3:
+        PLAYER.set_ammo(-1)
+
+#function for blocking, outcome based on computers action
+def block():               
+    if COMPUTER.action == 1:
+        COMPUTER.set_ammo(-1)
+    elif COMPUTER.action == 2:
+        COMPUTER.set_ammo(+1)
+    elif COMPUTER.action == 3:
+        print("Both players blocked")
 
 ## determines computer's action
 def computer_logic():
@@ -30,15 +48,6 @@ def computer_logic():
         else:
             computer_action = random.randint(1, 3)
     return computer_action
-
-"""def round_outcome(player_action, computer_action):                    # NYTT, scenario för att båda laddar
-    if computer_action == 2 and player_action == 2:                     # alternativ är att ha scenario inuti loopen varjegång ammo och action defineras
-        COMPUTER.set_ammo(+1)
-        PLAYER.set_ammo(+1)"""
-
-
-
-
 
 ## prints menu, takes input and sets objects' actions
 def print_menu():
@@ -62,7 +71,7 @@ def print_menu():
                 print('You need 1 or more bullets to shoot')
         elif PLAYER.action == 2:
             print('Loading')
-            """PLAYER.set_ammo(+1)             # funktion för att ladda, väldigt simpel"""
+          
             ## Load function
         elif PLAYER.action == 3:
             print('Blocking')
