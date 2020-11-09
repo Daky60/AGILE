@@ -31,14 +31,6 @@ def computer_logic():
             computer_action = random.randint(1, 3)
     return computer_action
 
-"""def round_outcome(player_action, computer_action):                    # NYTT, scenario för att båda laddar
-    if computer_action == 2 and player_action == 2:                     # alternativ är att ha scenario inuti loopen varjegång ammo och action defineras
-        COMPUTER.set_ammo(+1)
-        PLAYER.set_ammo(+1)"""
-
-
-
-
 
 ## prints menu, takes input and sets objects' actions
 def print_menu():
@@ -62,7 +54,6 @@ def print_menu():
                 print('You need 1 or more bullets to shoot')
         elif PLAYER.action == 2:
             print('Loading')
-            """PLAYER.set_ammo(+1)             # funktion för att ladda, väldigt simpel"""
             ## Load function
         elif PLAYER.action == 3:
             print('Blocking')
@@ -74,5 +65,7 @@ def print_menu():
     except:
         print('Choose a number between 0-3')
 
-
-print_menu()
+"""
+while True:
+    print_menu()
+"""
