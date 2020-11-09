@@ -17,6 +17,21 @@ COMPUTER = player()
 def print_ammo():
     print(f'Your ammo: {PLAYER.ammo}\nComputer\'s ammo: {COMPUTER.ammo}')
 
+## determines computer's action
+def computer_logic():
+    if COMPUTER.ammo == 0:
+        if PLAYER.ammo == 0:
+            computer_action = 2
+        else:
+            computer_action = random.randint(2, 3)
+    else:
+        if PLAYER.ammo == 0:
+            computer_action = random.randint(1, 2)
+        else:
+            computer_action = random.randint(1, 3)
+    return computer_action
+
+
 ## prints menu, takes input and sets objects' actions
 def print_menu():
     choice = (
@@ -29,18 +44,8 @@ def print_menu():
         )
     )
     try:
-        PLAYER.set_action(int(choice))
-        if COMPUTER.ammo == 0:
-            if PLAYER.ammo == 0:
-                computer_action = 2
-            else:
-                computer_action = random.randint(2, 3)
-        else:
-            if PLAYER.ammo == 0:
-                computer_action = random.randint(1, 2)
-            else:
-                computer_action = random.randint(1, 3)
-        COMPUTER.set_action(computer_action)
+        PLAYER.set_action(int(choice)) ## sets player action
+        COMPUTER.set_action(computer_logic()) ## sets computer action
         if PLAYER.action == 1:
             if PLAYER.ammo >= 1:
                 print('Shooting..')
@@ -60,3 +65,7 @@ def print_menu():
     except:
         print('Choose a number between 0-3')
 
+"""
+while True:
+    print_menu()
+"""
