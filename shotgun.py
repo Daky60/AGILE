@@ -32,6 +32,7 @@ def computer_logic():
     return computer_action
 
 
+
 ## prints menu, takes input and sets objects' actions
 def print_menu():
     choice = (
@@ -65,7 +66,7 @@ def print_menu():
     except:
         print('Choose a number between 0-3')
 
-"""
+
+
 while True:
     print_menu()
-"""
