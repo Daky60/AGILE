@@ -35,6 +35,15 @@ def block():
     elif COMPUTER.action == 3:
         print("Both players blocked")
 
+def loading():
+    if COMPUTER.action == 1:
+        print("LOST LOSER")
+    elif COMPUTER.action == 2:
+        COMPUTER.set_ammo(+1)
+        PLAYER.set_ammo(+1)
+    elif COMPUTER.action == 3:
+        PLAYER.set_ammo(+1)
+        
 ## determines computer's action
 def computer_logic():
     if COMPUTER.ammo == 0:
