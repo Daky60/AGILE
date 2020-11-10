@@ -1,5 +1,7 @@
 import random
 
+game_is_active = True
+
 class player:
     def __init__(self):
         self.action = 0
@@ -16,6 +18,37 @@ COMPUTER = player()
 ## prints ammo for player and computer
 def print_ammo():
     print(f'Your ammo: {PLAYER.ammo}\nComputer\'s ammo: {COMPUTER.ammo}')
+#function for shooting, outcome based on computers action
+def shoot():
+    if COMPUTER.action == 1:
+        PLAYER.set_ammo(PLAYER.ammo-1)
+        COMPUTER.set_ammo(COMPUTER.ammo-1)
+    elif COMPUTER.action == 2:
+        print("Winner winner chicken dinner")
+        global game_is_active
+        game_is_active = False
+    elif COMPUTER.action == 3:
+        PLAYER.set_ammo(PLAYER.ammo-1)
+
+#function for blocking, outcome based on computers action
+def block():               
+    if COMPUTER.action == 1:
+        COMPUTER.set_ammo(COMPUTER.ammo-1)
+    elif COMPUTER.action == 2:
+        COMPUTER.set_ammo(COMPUTER.ammo+1)
+    elif COMPUTER.action == 3:
+        print("Both players blocked")
+
+def loading():
+    if COMPUTER.action == 1:
+        print("LOST LOSER")
+        global game_is_active
+        game_is_active = False
+    elif COMPUTER.action == 2:
+        COMPUTER.set_ammo(COMPUTER.ammo+1)
+        PLAYER.set_ammo(PLAYER.ammo+1)
+    elif COMPUTER.action == 3:
+        PLAYER.set_ammo(PLAYER.ammo+1)
 
 ## determines computer's action
 def computer_logic():
@@ -30,8 +63,6 @@ def computer_logic():
         else:
             computer_action = random.randint(1, 3)
     return computer_action
-
-
 
 ## prints menu, takes input and sets objects' actions
 def print_menu():
@@ -50,14 +81,20 @@ def print_menu():
         if PLAYER.action == 1:
             if PLAYER.ammo >= 1:
                 print('Shooting..')
+                shoot()
+                print_ammo()
                 ## Shoot function
             else:
                 print('You need 1 or more bullets to shoot')
         elif PLAYER.action == 2:
             print('Loading')
+            loading()
+            print_ammo()
             ## Load function
         elif PLAYER.action == 3:
             print('Blocking')
+            block()
+            print_ammo()
             ## BLock function
         elif PLAYER.action == 0:
             exit()
@@ -67,6 +104,10 @@ def print_menu():
         print('Choose a number between 0-3')
 
 
+while game_is_active == True:
+
+
 
 while True:
+
     print_menu()
