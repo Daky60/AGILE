@@ -97,6 +97,8 @@ def print_menu():
             print_ammo()
             ## BLock function
         elif PLAYER.action == 0:
+            global game_is_active       #la in variabeln här för att ta oss ur loopen
+            game_is_active = False
             exit()
         else:
             print('Choose a number between 0-3')
