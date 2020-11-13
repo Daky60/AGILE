@@ -105,5 +105,11 @@ def print_menu():
     except:
         print('Choose a number between 0-3')
 
+
 while game_is_active == True:
+
+
+
+while True:
+
     print_menu()
