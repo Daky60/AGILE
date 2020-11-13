@@ -2,6 +2,8 @@ import random, time
 
 game_is_active = True
 
+game_is_active = True
+
 class player:
     def __init__(self):
         self.action = 0
@@ -83,13 +85,13 @@ def end_game():
     COMPUTER.set_action(0)
     COMPUTER.set_ammo(0)
 
-
 #function for shooting, outcome based on computers action
 def shoot():
     if COMPUTER.action == 1:
         PLAYER.set_ammo(PLAYER.ammo-1)
         COMPUTER.set_ammo(COMPUTER.ammo-1)
     elif COMPUTER.action == 2:
+
         print_win()
         end_game()
     elif COMPUTER.action == 3:
@@ -97,6 +99,7 @@ def shoot():
     elif COMPUTER.action == 4:
         print_defeat()
         end_game()
+
 
 
 #function for blocking, outcome based on computers action
@@ -157,7 +160,6 @@ def computer_logic():
             computer_action = random.randint(1, 3)
     return computer_action
 
-
 ## prints menu, takes input and sets objects' actions
 def print_menu():
     menu_items = ['Shoot', 'Load', 'Block', 'Shotgun']
@@ -172,7 +174,9 @@ def print_menu():
         COMPUTER.set_action(computer_logic()) ## sets computer action
         if PLAYER.action == 1:
             if PLAYER.ammo >= 1:
+
                 print_msg('Shooting..')
+
                 shoot()
                 print_ammo()
                 ## Shoot function
@@ -192,6 +196,7 @@ def print_menu():
             print_msg('Shotgun..')
             shotgun()
             print_ammo()
+
         elif PLAYER.action == 0:
             ## Exits game
             end_game()
@@ -204,8 +209,12 @@ def run_game():
     while game_is_active:
         print_menu()
 
+while game_is_active == True:
+
+
 
 while True:
+
     choice = print_pre_game_menu()
     if choice == 1:
         run_game()
@@ -221,3 +230,4 @@ while True:
         exit()
     else:
         print('Pick a number between 0-3')
+
