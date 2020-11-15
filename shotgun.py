@@ -2,8 +2,6 @@ import random, time
 
 game_is_active = True
 
-game_is_active = True
-
 class player:
     def __init__(self):
         self.action = 0
@@ -69,12 +67,26 @@ def print_draw():
     print('-' * 15)
     time.sleep(1)
 
+"""def print_computer_action(computer_action):
+    if computer_action == 1:
+        print("Computer is shooting!")
+    elif computer_action == 2:
+        print("Computer is loading!")
+    elif computer_action == 3:
+        print("Computer is blocking!")"""
+
 def print_msg(msg):
     time.sleep(1)
     print('-' * 15)
     print(msg)
     print('-' * 15)
     time.sleep(1)
+
+def print_msg_faster(msg2):
+    print('-' * 15)
+    print(msg2)
+    print('-' * 15)
+    
 
 ## Ends loop and resets players
 def end_game():
@@ -85,31 +97,37 @@ def end_game():
     COMPUTER.set_action(0)
     COMPUTER.set_ammo(0)
 
+
 #function for shooting, outcome based on computers action
 def shoot():
     if COMPUTER.action == 1:
+        print_msg_faster('Computer shoots')
+        print("Both players shot!")
         PLAYER.set_ammo(PLAYER.ammo-1)
         COMPUTER.set_ammo(COMPUTER.ammo-1)
     elif COMPUTER.action == 2:
-
+        print_msg_faster('Computer loads')
         print_win()
         end_game()
     elif COMPUTER.action == 3:
+        print_msg_faster('Computer blocks')
         PLAYER.set_ammo(PLAYER.ammo-1)
     elif COMPUTER.action == 4:
         print_defeat()
         end_game()
 
 
-
 #function for blocking, outcome based on computers action
 def block():               
     if COMPUTER.action == 1:
+        print_msg_faster('Computer shoots')
         COMPUTER.set_ammo(COMPUTER.ammo-1)
     elif COMPUTER.action == 2:
+        print_msg_faster('Computer loads')
         COMPUTER.set_ammo(COMPUTER.ammo+1)
     elif COMPUTER.action == 3:
-        print("Both players blocked")
+        print_msg_faster('Computer blocks')
+        print("Both players blocked!")
     elif COMPUTER.action == 4:
         print_defeat()
         end_game()
@@ -117,12 +135,16 @@ def block():
 
 def loading():
     if COMPUTER.action == 1:
+        print_msg_faster('Computer shoots')
         print_defeat()
         end_game()
     elif COMPUTER.action == 2:
+        print_msg_faster('Computer loads')
+        print("Both players loads!")
         COMPUTER.set_ammo(COMPUTER.ammo+1)
         PLAYER.set_ammo(PLAYER.ammo+1)
     elif COMPUTER.action == 3:
+        print_msg_faster('Computer blocks')
         PLAYER.set_ammo(PLAYER.ammo+1)
     elif COMPUTER.action == 4:
         print_defeat()
@@ -131,13 +153,14 @@ def loading():
 ## function for shotgunning
 def shotgun():
     if COMPUTER.action == 1:
-        print_msg('Computer shoots')
+        print_msg_faster('Computer shoots')
+        print("Shotgun beats regular shot!")
         print_win() 
     elif COMPUTER.action == 2:
-        print_msg('Computer loads')
+        print_msg_faster('Computer loads')
         print_win()
     elif COMPUTER.action == 3:
-        print_msg('Computer blocks')
+        print_msg_faster('Computer blocks')
         print_win()
     elif COMPUTER.action == 4:
         print_draw()
@@ -160,6 +183,7 @@ def computer_logic():
             computer_action = random.randint(1, 3)
     return computer_action
 
+
 ## prints menu, takes input and sets objects' actions
 def print_menu():
     menu_items = ['Shoot', 'Load', 'Block', 'Shotgun']
@@ -174,9 +198,7 @@ def print_menu():
         COMPUTER.set_action(computer_logic()) ## sets computer action
         if PLAYER.action == 1:
             if PLAYER.ammo >= 1:
-
                 print_msg('Shooting..')
-
                 shoot()
                 print_ammo()
                 ## Shoot function
@@ -196,7 +218,6 @@ def print_menu():
             print_msg('Shotgun..')
             shotgun()
             print_ammo()
-
         elif PLAYER.action == 0:
             ## Exits game
             end_game()
@@ -206,28 +227,19 @@ def print_menu():
         print_msg('Pick a number between 0-3')
 
 def run_game():
+    global game_is_active
+    game_is_active = True
     while game_is_active:
         print_menu()
 
-while game_is_active == True:
-
-
-
 while True:
-
     choice = print_pre_game_menu()
     if choice == 1:
         run_game()
     elif choice == 2:
-        print_msg(
-            '1. If one shoots whilst the other loads, the shooter wins\n'
-            '2. osv..'
-        )
-    elif choice == 3:
         print(f'Your score: {PLAYER.score}\nComputer\'s score: {COMPUTER.score}')
     elif choice == 0:
         print_msg('Exits game..')
         exit()
     else:
         print('Pick a number between 0-3')
-
